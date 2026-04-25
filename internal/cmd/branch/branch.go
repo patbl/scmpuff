@@ -17,10 +17,10 @@ const (
 	colorReset  = "\033[0m"
 )
 
-// CommandBranch lists git branches with numbered shortcuts.
+// NewBranchCmd lists git branches with numbered shortcuts.
 // The first line of output, when --branchlist is provided, will contain
 // a TAB separated list of branch names suitable for environment expansion.
-func CommandBranch() *cobra.Command {
+func NewBranchCmd() *cobra.Command {
 	var optsBranchlist bool
 
 	var branchCmd = &cobra.Command{

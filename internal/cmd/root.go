@@ -5,13 +5,13 @@ import (
 	"os"
 
 	goversion "github.com/caarlos0/go-version"
+	"github.com/mroth/scmpuff/internal/cmd/branch"
 	"github.com/mroth/scmpuff/internal/cmd/debug"
 	"github.com/mroth/scmpuff/internal/cmd/exec"
 	"github.com/mroth/scmpuff/internal/cmd/expand"
 	"github.com/mroth/scmpuff/internal/cmd/inits"
 	"github.com/mroth/scmpuff/internal/cmd/intro"
 	"github.com/mroth/scmpuff/internal/cmd/status"
-	"github.com/mroth/scmpuff/internal/commands/branch"
 	"github.com/spf13/cobra"
 )
 
@@ -50,7 +50,7 @@ If you are just getting started, try the intro!`,
 	rootCmd.AddCommand(expand.NewExpandCmd())
 	rootCmd.AddCommand(inits.NewInitCmd())
 	rootCmd.AddCommand(status.NewStatusCmd())
-	rootCmd.AddCommand(branch.CommandBranch())
+	rootCmd.AddCommand(branch.NewBranchCmd())
 
 	return rootCmd
 }
