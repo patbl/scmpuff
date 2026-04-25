@@ -9,7 +9,7 @@ export SCMPUFF_GIT_CMD
 
 function git() {
   case $1 in
-    commit|blame|log|rebase|merge|branch)
+    commit|blame|log|rebase|merge|branch|switch)
       scmpuff exec -- "$SCMPUFF_GIT_CMD" "$@";;
     checkout|diff|rm|reset|restore)
       scmpuff exec --relative -- "$SCMPUFF_GIT_CMD" "$@";;

@@ -12,7 +12,7 @@ function git
     end
 
     switch $argv[1]
-    case commit blame log rebase merge branch
+    case commit blame log rebase merge branch switch
         scmpuff exec -- "$SCMPUFF_GIT_CMD" $argv
     case checkout diff rm reset restore
         scmpuff exec --relative -- "$SCMPUFF_GIT_CMD" $argv
