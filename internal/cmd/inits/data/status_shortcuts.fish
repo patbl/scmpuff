@@ -23,9 +23,17 @@ function scmpuff_status
 end
 
 function scmpuff_branch
+    # When invoked with arguments, delegate to `git branch` (via `scmpuff exec`
+    # so numeric shortcuts still expand). The numbered-listing path only runs
+    # when called with no arguments.
+    if test (count $argv) -gt 0
+        scmpuff exec -- git branch $argv
+        return $status
+    end
+
     scmpuff_clear_vars
     set -lx scmpuff_env_char "e"
-    set -l cmd_output (/usr/bin/env scmpuff branch --branchlist $argv)
+    set -l cmd_output (/usr/bin/env scmpuff branch --branchlist)
     set -l es "$status"
 
     if test $es -ne 0

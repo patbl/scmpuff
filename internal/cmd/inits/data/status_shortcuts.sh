@@ -42,12 +42,20 @@ scmpuff_status() {
 
 # List git branches with numbered shortcuts
 scmpuff_branch() {
+  # When invoked with arguments, delegate to `git branch` (via `scmpuff exec`
+  # so numeric shortcuts still expand). The numbered-listing path only runs
+  # when called with no arguments.
+  if [ $# -gt 0 ]; then
+    scmpuff exec -- git branch "$@"
+    return $?
+  fi
+
   local scmpuff_env_char="e"
 
   if [ -n "$ZSH_VERSION" ]; then setopt shwordsplit; fi;
 
   local cmd_output
-  cmd_output="$(/usr/bin/env scmpuff branch --branchlist "$@")"
+  cmd_output="$(/usr/bin/env scmpuff branch --branchlist)"
 
   local es=$?
   if [ $es -ne 0 ]; then
