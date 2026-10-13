@@ -20,12 +20,12 @@ The wrapper resolves the real git binary path into `$SCMPUFF_GIT_CMD` at init ti
 
 Not all git subcommands need shortcut expansion. The wrapper uses a dispatch table:
 
-| Subcommand(s)                                | Behavior                                                                      |
-|----------------------------------------------|-------------------------------------------------------------------------------|
-| `commit`, `blame`, `log`, `rebase`, `merge`  | `scmpuff exec -- git <args>` — expands shortcuts to absolute paths            |
-| `checkout`, `diff`, `rm`, `reset`, `restore` | `scmpuff exec --relative -- git <args>` — expands shortcuts to relative paths |
-| `add`                                        | `scmpuff exec -- git <args>` then auto-refreshes status via `scmpuff_status`  |
-| everything else                              | Pass through to real git directly (no expansion)                              |
+| Subcommand(s)                                                                 | Behavior                                                                      |
+|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `commit`, `blame`, `log`, `rebase`, `merge`, `branch`, `switch`               | `scmpuff exec -- git <args>` — expands shortcuts to absolute paths            |
+| `checkout`, `diff`, `rm`, `reset`, `restore`                                  | `scmpuff exec --relative -- git <args>` — expands shortcuts to relative paths |
+| `add`                                                                         | `scmpuff exec -- git <args>` then auto-refreshes status via `scmpuff_status`  |
+| everything else                                                               | Pass through to real git directly (no expansion)                              |
 
 The `--relative` flag matters for commands like `diff` and `checkout` where git expects paths relative to cwd. The `add` case auto-refreshes status afterward so the numbered shortcuts immediately reflect the new state.
 
